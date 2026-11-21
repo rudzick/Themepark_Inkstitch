@@ -28,10 +28,16 @@ themepark:add_table{
         { column = 'tags', type = 'jsonb' },
         { column = 'piageom', type = 'point' },
     }),
+    -- The views fake_geldautomaten / fake_cash_withdrawal deliver piageom
+    -- as geometry, so tile servers filter on this column.
+    -- (The index on geom is added by themepark automatically.)
+    indexes = {
+        { column = 'piageom', method = 'gist' },
+    },
     tags = { },
     tiles = {
-    minzoom = 9,
-	},
+        minzoom = 9,
+    },
 }
 themepark:add_table{
     name = 'cash_withdrawal',
@@ -54,10 +60,16 @@ themepark:add_table{
         { column = 'tags', type = 'jsonb' },
         { column = 'piageom', type = 'point' },
     }),
+    -- The views fake_geldautomaten / fake_cash_withdrawal deliver piageom
+    -- as geometry, so tile servers filter on this column.
+    -- (The index on geom is added by themepark automatically.)
+    indexes = {
+        { column = 'piageom', method = 'gist' },
+    },
     tags = { },
     tiles = {
-    minzoom = 9,
-	},
+        minzoom = 9,
+    },
 }
 
 -- ---------------------------------------------------------------------------
