@@ -34,7 +34,7 @@ themepark:add_proc('node', function(object, data)
     end
 
     if object.tags.natural == 'tree' then
-       
+
        themepark:insert('trees', {
 			   geom = object:as_point(),
 			   tags = object.tags

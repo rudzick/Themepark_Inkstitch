@@ -62,44 +62,34 @@ themepark:add_table{
 
 -- ---------------------------------------------------------------------------
 
+local function has_atm(tags)
+    return tags.atm
+        and tags.atm ~= 'no'
+        and tags.atm ~= 'unknown'
+end
+
 themepark:add_proc('node', function(object, data)
-
-    if ( object.tags.amenity == 'atm' ) or ( object.tags.atm and not ( object.tags.atm == 'no' or object.tags.atm == 'unknown' )) then
-
-       local a = object
-       local atm_geom =  object:as_point()
-
-       themepark:insert('atm', {
-		geom = atm_geom,
-		tags = object.tags,
-		     }
-		)    
-    end		
-end)
-
-themepark:add_proc('way', function(object, data)
-
-    if not object.is_closed or not object.tags.atm then
+    if object.tags.amenity ~= 'atm' and not has_atm(object.tags) then
         return
     end
 
-    if object.tags.atm == 'no' or object.tags.atm == 'unknown' then
-       return
+    themepark:insert('atm', {
+        geom = object:as_point(),
+        tags = object.tags,
+    })
+end)
+
+themepark:add_proc('way', function(object, data)
+    if not object.is_closed or not has_atm(object.tags) then
+        return
     end
 
-    local a = object
-    local a_geom = object:as_polygon()
-    local pia_geom = object:as_polygon():pole_of_inaccessibility()
-    
-    if a then
-         themepark:insert('atm_polygons', {
-	 	geom = a_geom,
-		tags= object.tags,
-		piageom = pia_geom
-		}
-		)
-    end
-
+    local geom = object:as_polygon()
+    themepark:insert('atm_polygons', {
+        geom = geom,
+        tags = object.tags,
+        piageom = geom:pole_of_inaccessibility()
+    })
 end)
 
 -- ---------------------------------------------------------------------------
@@ -138,7 +128,7 @@ end)
 
 -- ---------------------------------------------------------------------------
 -- Implicit cash withdrawal for shops of known chains
--- https://www.hanseaticbank.de/klarmacher/bezahlen/geld-abheben-im-supermarkt-so-funktioniert-cashback-bei-rewe-lidl-co#so
+-- https://www.hanseaticbank.de/klarmacher/bezahlen/geld-abheben-im-supermarkt-so-funktioniert-cashback-bei-rewe-lidl-co
 --
 -- name:     brand/operator name (lower case)
 -- wikidata: brand/operator Wikidata ID (lower case)

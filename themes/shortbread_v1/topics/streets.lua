@@ -346,7 +346,7 @@ themepark:add_proc('way', function(object, data)
         a.horse = t.horse
 --  streets with access=private
         a.access = t.access
-       
+
         a.z_order = Z_STEP_PER_LAYER * a.layer + hwinfo[1]
         a.minzoom = hwinfo[2]
     elseif t.railway then
