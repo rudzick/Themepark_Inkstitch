@@ -1,4 +1,4 @@
-p# Connection keep alive timeout [default: 75]
+# Connection keep alive timeout [default: 75]
 keep_alive: 75
 
 # The socket address to bind [default: 0.0.0.0:3000]
