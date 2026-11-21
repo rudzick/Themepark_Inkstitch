@@ -9,7 +9,7 @@ CREATE OR REPLACE VIEW tree_species_view AS
                          CASE
                             WHEN  tags->>'name' <> 'none' OR tags->>'name:de' <> 'none' THEN CONCAT(E'\u000a', E'\u201e', COALESCE(tags->>'name:de',tags->>'name'), E'\u201c')
                         END AS baumname,
-			p.tags - 'ID' AS tree_tags
+			p.tags AS tree_tags
                 FROM trees p
                 LEFT JOIN tree_species s
                     ON LOWER(p.tags->>'species') = s.treespecies
