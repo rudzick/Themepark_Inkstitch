@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-styledir=/home/renderaccount/Myosm2pgsql-themepark
+styledir=/home/renderaccount/Themepark_Inkstitch
 export LUA_PATH="$styledir/lua/?.lua;;"
 cd /home/postgres/download
 # inkrementelles Datenbankupdate mit osm2psql-replication

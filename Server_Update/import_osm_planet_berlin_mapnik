@@ -4,7 +4,7 @@ set -euo pipefail
 #planetfilea=berlin-latest.osm.pbf
 planetfilea=dach-latest.osm.pbf
 #planetfilea=germany-latest.osm.pbf
-styledir=/home/renderaccount/Myosm2pgsql-themepark
+styledir=/home/renderaccount/Themepark_Inkstitch
 export LUA_PATH="$styledir/lua/?.lua;;"
 cd /home/postgres/download
 if [ -f $planetfilea ]

@@ -18,9 +18,9 @@ RestartSec=10s
 Type=simple
 User=pgtileserv
 Group=pgtileserv
-WorkingDirectory=/home/renderaccount/Myosm2pgsql-themepark/Martin/
+WorkingDirectory=/home/renderaccount/Themepark_Inkstitch/Martin/
 
-ExecStart=/usr/bin/martin --config /home/renderaccount/Myosm2pgsql-themepark/Martin/config.yaml
+ExecStart=/usr/bin/martin --config /home/renderaccount/Themepark_Inkstitch/Martin/config.yaml
 Restart=always
 
 StandardOutput=append:/var/log/martin/martin.log

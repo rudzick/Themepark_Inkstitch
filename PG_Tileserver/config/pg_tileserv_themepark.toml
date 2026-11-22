@@ -17,7 +17,7 @@ DbTimeout = 10
 
 # Look to read html templates from this directory
 # AssetsPath = "/usr/share/pg_tileserv/assets"
-AssetsPath = "/home/renderaccount/Myosm2pgsql-themepark/PG_Tileserver/assets"
+AssetsPath = "/home/renderaccount/Themepark_Inkstitch/PG_Tileserver/assets"
 
 # Accept connections on this subnet (default accepts on all)
 # HttpHost = "0.0.0.0"

@@ -18,9 +18,9 @@ RestartSec=10s
 Type=simple
 User=pgtileserv
 Group=pgtileserv
-WorkingDirectory=/home/renderaccount/Myosm2pgsql-themepark/PG_Tileserver/
+WorkingDirectory=/home/renderaccount/Themepark_Inkstitch/PG_Tileserver/
 
-ExecStart=/usr/local/bin/pg_tileserv --config /home/renderaccount/Myosm2pgsql-themepark/PG_Tileserver/config/pg_tileserv_themepark.toml
+ExecStart=/usr/local/bin/pg_tileserv --config /home/renderaccount/Themepark_Inkstitch/PG_Tileserver/config/pg_tileserv_themepark.toml
 Restart=always
 
 StandardOutput=append:/var/log/pg_tileserv/themepark.log
