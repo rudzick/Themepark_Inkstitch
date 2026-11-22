@@ -10,7 +10,11 @@ CREATE OR REPLACE VIEW tree_species_view AS
                             WHEN  COALESCE(p.tags->>'name:de', p.tags->>'name') <> 'none' THEN CONCAT(E'\u000a', E'\u201e', COALESCE(p.tags->>'name:de', p.tags->>'name'), E'\u201c')
                         END AS baumname,
 			p.tags AS tree_tags
-                FROM trees p
+                FROM (
+                    SELECT geom, tags FROM trees
+                    UNION ALL
+                    SELECT geom, tags FROM shrubs
+                ) p
                 LEFT JOIN tree_species s
                     ON LOWER(p.tags->>'species') = s.treespecies
                   AND s.lang='de_DE';
