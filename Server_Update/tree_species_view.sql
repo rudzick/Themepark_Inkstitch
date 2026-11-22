@@ -7,7 +7,7 @@ CREATE OR REPLACE VIEW tree_species_view AS
                                              , p.tags->>'genus'
                                              ) AS obstbaumart,			
                          CASE
-                            WHEN  tags->>'name' <> 'none' OR tags->>'name:de' <> 'none' THEN CONCAT(E'\u000a', E'\u201e', COALESCE(tags->>'name:de',tags->>'name'), E'\u201c')
+                            WHEN  COALESCE(p.tags->>'name:de', p.tags->>'name') <> 'none' THEN CONCAT(E'\u000a', E'\u201e', COALESCE(p.tags->>'name:de', p.tags->>'name'), E'\u201c')
                         END AS baumname,
 			p.tags AS tree_tags
                 FROM trees p
