@@ -9,11 +9,12 @@ CREATE OR REPLACE VIEW tree_species_view AS
                          CASE
                             WHEN  COALESCE(p.tags->>'name:de', p.tags->>'name') <> 'none' THEN CONCAT(E'\u000a', E'\u201e', COALESCE(p.tags->>'name:de', p.tags->>'name'), E'\u201c')
                         END AS baumname,
-			p.tags AS tree_tags
+			p.tags AS tree_tags,
+			p.pflanzentyp
                 FROM (
-                    SELECT geom, tags FROM trees
+                    SELECT geom, tags, 'Baum' AS pflanzentyp FROM trees
                     UNION ALL
-                    SELECT geom, tags FROM shrubs
+                    SELECT geom, tags, 'Strauch' FROM shrubs
                 ) p
                 LEFT JOIN tree_species s
                     ON LOWER(p.tags->>'species') = s.treespecies
